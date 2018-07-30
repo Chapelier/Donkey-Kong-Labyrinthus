@@ -43,48 +43,23 @@ class Donkey(object):
 		self.direction = self.DOWN
 
 	def move(self, direction, window):
-		futur_case = None
-		if direction == "up":
-			self.direction = self.UP
-			try:
-				futur_case = self.level.structure[self.num_y-1][self.num_x]
-				if futur_case == 'X':
-					raise IndexError
-			except IndexError:
-				pass
-			else:
-				self.num_y -= 1
-		if direction == "down":
-			self.direction = self.DOWN
-			try:
-				futur_case = self.level.structure[self.num_y+1][self.num_x]
-				if futur_case == 'X':
-					raise IndexError
-			except IndexError:
-				pass
-			else:
-				self.num_y += 1
-		if direction == "left":
-			self.direction = self.LEFT
-			try:
-				futur_case = self.level.structure[self.num_y][self.num_x-1]
-				if futur_case == 'X':
-					raise IndexError
-			except IndexError:
-				pass
-			else:
-				self.num_x -= 1
-		if direction == "right":
-			self.direction = self.RIGHT
-			try:
-				futur_case = self.level.structure[self.num_y][self.num_x+1]
-				if futur_case == 'X':
-					raise IndexError
-			except IndexError:
-				pass
-			else:
-				self.num_x += 1
+		increment = {'up': (0, -1, self.UP),
+					'down': (0, 1, self.DOWN),
+					'left': (-1, 0, self.LEFT),
+					'right': (1, 0, self.RIGHT)}
+		new_x = self.num_x+increment[direction][0]
+		new_y = self.num_y+increment[direction][1]
+		futur_case = self.level.structure[new_y][new_x]
+		
+		x_in_grid = 0 <= new_x < SPRITES_PER_LINES
+		y_in_grid = 0 <= new_y < SPRITES_PER_LINES
+		not_wall = futur_case != 'X'
 
+		if x_in_grid and y_in_grid and not_wall:
+			self.num_x += increment[direction][0]
+			self.num_y += increment[direction][1]
+		self.direction = increment[direction][2]
+		
 		self.level.display(window)
 		position_x = self.num_x * WIDTH_SPRITES
 		position_y = self.num_y * WIDTH_SPRITES
