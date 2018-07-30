@@ -1,24 +1,10 @@
 
 """
-écran d'accueil -> choix niveau.
-lancement du jeu (possibilité de revenir à l'écran d'accueil)
-labyrinthe terminé -> écran d'accueil
-
-Les fonctionnalités du programme
-choix du niveau par touche
-La structure du niveau (départ, emplacement des murs, arrivée) -> fichier n1, n2...
-dk -> touches directionnelles du clavier.
-fenêtre -> 15 sprites de côté
-à tout moment -> revenir au menu principal
-labyrinthe terminé lorsque bananes trouvées
-"""
-
-"""
 Jeu Donkey Kong Labyrinthe
 Jeu dans lequel on doit déplacer DK jusqu'aux bananes à travers un labyrinthe.
 
 Script Python
-Fichiers : dklabyrinthe.py, classes.py, constantes.py, n1, n2 + images
+Fichiers : dklabyrinthe.py, classes.py, constantes.py, sprites, levels
 """
 import pygame
 from os.path import exists
@@ -31,8 +17,8 @@ window = pygame.display.set_mode((WIDTH_WINDOW, WIDTH_WINDOW))
 pygame.display.set_caption(TITLE_WINDOW)
 background = pygame.image.load(BG_LEVEL).convert()
 
-# icone = pygame.image.load(image_icone)
-# pygame.display.set_icon(icone)
+icone = pygame.image.load(DK_DOWN)
+pygame.display.set_icon(icone)
 
 ######################################################################
 
