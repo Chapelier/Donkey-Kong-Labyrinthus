@@ -106,8 +106,8 @@ while playing:
                                     and event.key == K_ESCAPE:
                                 not_escape_pressed = False
 
-                    pygame.mixer.stop()
+                    pygame.mixer.fadeout(300)
                     menu()
                     state_of_game = "menu"
-                    
+
         pygame.time.Clock().tick(30)
