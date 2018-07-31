@@ -12,11 +12,11 @@ from os.path import exists
 from classes import *
 from constantes import *
 
+# initialize window
 pygame.init()
 window = pygame.display.set_mode((WIDTH_WINDOW, WIDTH_WINDOW))
 pygame.display.set_caption(TITLE_WINDOW)
 background = pygame.image.load(BG_LEVEL).convert()
-
 icone = pygame.image.load(DK_DOWN)
 pygame.display.set_icon(icone)
 
@@ -47,6 +47,7 @@ def menu():
 
 menu()
 while playing:
+    
     while state_of_game == "menu":
         
         for event in pygame.event.get():

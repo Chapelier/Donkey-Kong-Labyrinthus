@@ -35,12 +35,12 @@ class Donkey(object):
 	def __init__(self, up, down, left, right, level):
 		self.num_x = 0
 		self.num_y = 0
+		self.direction = self.DOWN
 		self.UP = pygame.image.load(up).convert_alpha()
 		self.DOWN = pygame.image.load(down).convert_alpha()
 		self.LEFT = pygame.image.load(left).convert_alpha()
 		self.RIGHT = pygame.image.load(right).convert_alpha()
 		self.level = level
-		self.direction = self.DOWN
 
 	def move(self, direction, window):
 		increment = {'up': (0, -1, self.UP),
