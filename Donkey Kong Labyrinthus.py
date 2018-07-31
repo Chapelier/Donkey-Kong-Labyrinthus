@@ -92,6 +92,8 @@ while playing:
                 if event.key == K_RIGHT:
                     window.blit(background, (0,0))
                     win = donkey.move('right', window)
+                
+                pygame.display.flip()
 
                 if win is True:
                     WIN_SOUND.play()
@@ -107,7 +109,5 @@ while playing:
                     pygame.mixer.stop()
                     menu()
                     state_of_game = "menu"
-
-                pygame.display.flip()
-        
+                    
         pygame.time.Clock().tick(30)
