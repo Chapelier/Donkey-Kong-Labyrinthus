@@ -49,15 +49,17 @@ class Donkey(object):
 					'right': (1, 0, self.RIGHT)}
 		new_x = self.num_x+increment[direction][0]
 		new_y = self.num_y+increment[direction][1]
-		futur_case = self.level.structure[new_y][new_x]
 		
 		x_in_grid = 0 <= new_x < SPRITES_PER_LINES
 		y_in_grid = 0 <= new_y < SPRITES_PER_LINES
-		not_wall = futur_case != 'X'
+		futur_case = None
 
-		if x_in_grid and y_in_grid and not_wall:
-			self.num_x += increment[direction][0]
-			self.num_y += increment[direction][1]
+		if x_in_grid and y_in_grid:
+			futur_case = self.level.structure[new_y][new_x]
+			if futur_case != 'X':
+				self.num_x += increment[direction][0]
+				self.num_y += increment[direction][1]
+			
 		self.direction = increment[direction][2]
 		
 		self.level.display(window)
