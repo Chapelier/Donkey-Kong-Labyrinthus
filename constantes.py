@@ -25,3 +25,7 @@ playing = True
 # events
 LIST_OF_F_KEYS = [K_F1, K_F2, K_F3, K_F4, K_F5, K_F6, 
                 K_F7, K_F8, K_F9, K_F10, K_F11, K_F12]
+
+# sounds
+WIN_SOUND_FILE = r"sounds\win.wav"
+LEVEL_SOUND_FILE = r"sounds\level.wav"

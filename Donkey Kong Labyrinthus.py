@@ -20,6 +20,10 @@ background = pygame.image.load(BG_LEVEL).convert()
 icone = pygame.image.load(DK_DOWN)
 pygame.display.set_icon(icone)
 
+# initialize sounds
+WIN_SOUND = pygame.mixer.Sound(WIN_SOUND_FILE)
+LEVEL_SOUND = pygame.mixer.Sound(LEVEL_SOUND_FILE)
+
 ######################################################################
 
 def open_level(number):
@@ -47,7 +51,7 @@ def menu():
 
 menu()
 while playing:
-    
+
     while state_of_game == "menu":
         
         for event in pygame.event.get():
@@ -59,6 +63,7 @@ while playing:
                     except FileNotFoundError:
                         pass
                     else:
+                        LEVEL_SOUND.play()
                         state_of_game = "playing"
                 
                 if event.key == K_ESCAPE:
@@ -89,6 +94,17 @@ while playing:
                     win = donkey.move('right', window)
 
                 if win is True:
+                    WIN_SOUND.play()
+
+                    # waiting for menu
+                    not_escape_pressed = True
+                    while not_escape_pressed:
+                        for event in pygame.event.get():
+                            if event.type == KEYDOWN \
+                                    and event.key == K_ESCAPE:
+                                not_escape_pressed = False
+
+                    pygame.mixer.stop()
                     menu()
                     state_of_game = "menu"
 
