@@ -30,6 +30,9 @@ class Level(object):
 				elif self.structure[num_case_y][num_case_x] == "D":
 					window.blit(start, (position_x, position_y))
 
+	def __getitem__(self, index):
+		return self.structure[index]
+
 class Donkey(object):
 
 	def __init__(self, up, down, left, right, level):
@@ -55,7 +58,7 @@ class Donkey(object):
 		futur_case = None
 
 		if x_in_grid and y_in_grid:
-			futur_case = self.level.structure[new_y][new_x]
+			futur_case = self.level[new_y][new_x]
 			if futur_case != 'X':
 				self.num_x += increment[direction][0]
 				self.num_y += increment[direction][1]
