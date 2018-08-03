@@ -80,6 +80,7 @@ while playing:
                     menu()
                     state_of_game = "menu"
 
+                win = None
                 if event.key == K_UP:
                     window.blit(background, (0,0))
                     win = donkey.move('up', window)
